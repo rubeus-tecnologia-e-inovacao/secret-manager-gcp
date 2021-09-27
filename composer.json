@@ -1,21 +1,29 @@
 {
     "name": "rubeus/secret-manager-gcp",
     "description": "Helper to manage sensitive keys and values at Secret Manager - GCP",
-    "version": "0.1",
+    "type": "library",
     "require": {
         "php": ">=5.6",
         "google/cloud-secret-manager": "^1.5"
     },
-    "license": [
-        "GPL-3.0-or-later"
-    ],
+    "version": "0.1",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "license": "MIT",
     "authors": [
         {
             "name": "Guilherme A. Ferraz",
-            "email": "guilhermeaugusto@rubeus.com.br",
-            "role": "DevOps"
+            "email": "guilhermeaugusto@rubeus.com.br"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Rubeus\\SecretManager\\": ""
+        }
+    },
     "support": {
         "email": "guilhermeaugusto@rubeus.com.br"
     }
