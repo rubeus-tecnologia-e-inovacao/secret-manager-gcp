@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Helpers;
+namespace Rubeus\SecretManagerGcp;
 
 // Import the Secret Manager client library.
 use Google\Cloud\SecretManager\V1\Replication;
