@@ -1,0 +1,22 @@
+{
+    "name": "rubeus/secret-manager-gcp",
+    "description": "Instalação e configuração automática de git hooks para análise estática de código PHP",
+    "version": "0.1",
+    "require": {
+        "php": ">=5.6",
+        "google/cloud-secret-manager": "^1.5"
+    },
+    "license": [
+        "GPL-3.0-or-later"
+    ],
+    "authors": [
+        {
+            "name": "Guilherme A. Ferraz",
+            "email": "guilhermeaugusto@rubeus.com.br",
+            "role": "DevOps"
+        }
+    ],
+    "support": {
+        "email": "guilhermeaugusto@rubeus.com.br"
+    }
+}
