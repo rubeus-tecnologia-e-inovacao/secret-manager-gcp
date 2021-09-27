@@ -1,29 +1,43 @@
-# README #
+# Introdução #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+<p>
+    Esse repositório se refere a uma dependência à ser inserida nos projetos onde exista a necessidade de protejer senhas/chaves/tokens e demais informações sensíveis.
+</p>
 
-### What is this repository for? ###
+<br>
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+# Como configurar
 
-### How do I get set up? ###
+### 1º Passo 
+Adicione a seguinte variavel ao seu ambiente (.env): 
+    
+    GOOGLE_APPLICATION_CREDENTIALS=/home/$USER/.service-accounts/secret-manager-account.json
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+onde secret-manager-account.json é uma conta de serviço na GCP que deve possuir ao menos as seguintes permissões:
+    
+`secretmanager.secrets.create`
 
-### Contribution guidelines ###
+`secretmanager.secrets.get`
 
-* Writing tests
-* Code review
-* Other guidelines
+`secretmanager.versions.access`
 
-### Who do I talk to? ###
+`secretmanager.versions.add`
 
-* Repo owner or admin
-* Other community or team contact
+`secretmanager.versions.list`
+
+sugerido utilizar o papel: 
+
+`Administrador do Gerenciador de secrets`
+
+<hr>
+
+### 2º Passo
+
+Onde precisar utilizá-la, importe a dependência com:
+
+    <?php
+    use Rubeus\SecretManagerGcp\SecretManager;
+
+
+
+
