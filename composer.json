@@ -6,10 +6,10 @@
         "php": ">=5.6",
         "google/cloud-secret-manager": "^1.5"
     },
-    "version": "0.3",
+    "version": "0.4",
     "extra": {
         "branch-alias": {
-            "dev-master": "0.3-dev"
+            "dev-master": "0.4-dev"
         }
     },
     "license": "MIT",
@@ -21,7 +21,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Rubeus\\SecretManager\\": ""
+            "Rubeus\\SecretManagerGcp\\": ""
         }
     },
     "support": {
