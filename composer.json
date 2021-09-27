@@ -1,6 +1,6 @@
 {
     "name": "rubeus/secret-manager-gcp",
-    "description": "Instalação e configuração automática de git hooks para análise estática de código PHP",
+    "description": "Helper to manage sensitive keys and values at Secret Manager - GCP",
     "version": "0.1",
     "require": {
         "php": ">=5.6",
