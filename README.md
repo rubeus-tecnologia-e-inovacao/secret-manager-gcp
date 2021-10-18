@@ -136,15 +136,11 @@ Adicione a seguinte variavel ao seu ambiente (.env):
 
 onde secret-manager-account.json é uma conta de serviço na GCP que deve possuir ao menos as seguintes permissões:
     
-`secretmanager.secrets.create`
-
-`secretmanager.secrets.get`
-
-`secretmanager.versions.access`
-
-`secretmanager.versions.add`
-
-`secretmanager.versions.list`
+`secretmanager.secrets.create`<br>
+`secretmanager.secrets.get`<br>
+`secretmanager.versions.access`<br>
+`secretmanager.versions.add`<br>
+`secretmanager.versions.list`<br>
 
 sugerido utilizar o papel: 
 
