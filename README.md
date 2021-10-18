@@ -10,6 +10,8 @@
 
 <p>Cipher é uma classe que disponibiliza as funções 'encrypt' e 'decrypt', cujos nomes remetem obviamente aos seus respectivos propósitos. As funções de Cipher devem ser utilizadas para aqueles valores cujo conteúdo precisa ser protegido e posteriormente recuperado em seu formato original.</p>
 
+<br>
+
 ## 1º Passo
 
 Essa classe exige que você armazene de forma segura duas chaves (devido ao uso de openssl_encrypt e openssl_decrypt) para criptografar e descriptografar uma string. Recomendamos configurá-las através de variáveis de ambiente.
@@ -19,6 +21,8 @@ No seu .env, adicione:
     MASTER_SECRET_KEY=senhaExemplo
     MASTER_SECRET_IV=senhaForteExemplo
 
+<br>
+
 ## 2º Passo
 
 Onde precisar utilizar, importe a dependência com:
@@ -26,10 +30,13 @@ Onde precisar utilizar, importe a dependência com:
     <?php
     use Rubeus\SecretManagerGcp\Cipher;
 
+<br>
 
 ## Exemplos de uso
 
-### Para proteger uma string
+<br>
+
+Para proteger uma string
     
     Cipher::encrypt(ENV(MASTER_SECRET_KEY), ENV(MASTER_SECRET_IV), "string_for_token_api_client");
     
@@ -39,7 +46,7 @@ Onde precisar utilizar, importe a dependência com:
 
 <br>
 
-### Para recuperar o valor original de uma string protegida
+Para recuperar o valor original de uma string protegida
 
     Cipher::decrypt(ENV(MASTER_SECRET_KEY), ENV(MASTER_SECRET_IV), "dlE0VUZ4aUVMbDF3dTlOYmdtVG5UUT09");
 
@@ -71,6 +78,8 @@ Para criar o hash de uma senha por exemplo, basta chamar a seguinte função
 `saída esperada:`
 
     string(96) "$argon2i$v=19$m=32768,t=4,p=2$a0xRMEUvZTJPd0lvZ2tSdg$wchL2gWLMmqpSt+W5nLCE8xJ6CLaZ1XrTdMBe/RBJZ0"
+
+O hash será diferente cada vez que a função create() for chamada, mesmo se for instruída a mesma string de entrada
 
 <br>
 
