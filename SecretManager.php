@@ -19,15 +19,15 @@ class SecretManager
      *
     **/
 
-    private static function connect($projectId)
+    private static function connect($projectId, $dotEnv = "GOOGLE_APPLICATION_CREDENTIALS")
     {
         // Create the Secret Manager client.
         try {
             $connection = new stdClass;
-            $credentials = env('GOOGLE_APPLICATION_CREDENTIALS');
+            $credentials = env($dotEnv);
             if (empty($credentials)) {
                 $connection->client = false;
-                $connection->message = "GOOGLE_APPLICATION_CREDENTIALS not found at .env";
+                $connection->message = "$dotEnv not found at .env";
             } else {
                 $client = new SecretManagerServiceClient();
                 $connection->client = $client;
@@ -41,7 +41,6 @@ class SecretManager
         return $connection;
 
     }
-
 
     private static function create($client, $projectId, $secretName)
     {
@@ -61,9 +60,9 @@ class SecretManager
 
     }
 
-    public static function list($projectId, $secretName)
+    public static function list($projectId, $secretName, $dotEnv = null)
     {
-        $connection = SecretManager::connect($projectId);
+        $connection = SecretManager::connect($projectId, $dotEnv);
 
         if ($connection->client) {
 
@@ -85,10 +84,10 @@ class SecretManager
         }
     }
 
-    public static function get($projectId, $secretName, $version)
+    public static function get($projectId, $secretName, $version, $dotEnv = null)
     {
 
-        $connection = SecretManager::connect($projectId);
+        $connection = SecretManager::connect($projectId, $dotEnv);
 
         if ($connection->client) {
             $versionName = $connection->client->secretVersionName($projectId, $secretName, $version);
@@ -106,14 +105,12 @@ class SecretManager
             return $connection->message;
         }
 
-
-
     }
 
-    public static function getLast($projectId, $secretName)
+    public static function getLast($projectId, $secretName, $dotEnv = null)
     {
 
-        $connection = SecretManager::connect($projectId);
+        $connection = SecretManager::connect($projectId, $dotEnv);
 
         if ($connection->client) {
             $formattedParent = $connection->client->secretName($projectId, $secretName);
@@ -128,16 +125,16 @@ class SecretManager
         }
     }
 
-    public static function put($projectId, $secretName, $versionValue)
+    public static function put($projectId, $secretName, $versionValue, $dotEnv = null)
     {
 
-        $connection = SecretManager::connect($projectId);
+        $connection = SecretManager::connect($projectId, $dotEnv);
 
         if ($connection->client) {
             $newSecret = SecretManager::create($connection->client, $projectId, $secretName);
 
             if ($newSecret) {
-                $storeSecret = SecretManager::patch($projectId, $secretName, $versionValue);
+                $storeSecret = SecretManager::patch($projectId, $secretName, $versionValue, $dotEnv);
                 return $storeSecret;
             } else {
                 return false;
@@ -147,10 +144,10 @@ class SecretManager
         }
     }
 
-    public static function patch($projectId, $secretName, $newVersionValue)
+    public static function patch($projectId, $secretName, $newVersionValue, $dotEnv = null)
     {
 
-        $connection = SecretManager::connect($projectId);
+        $connection = SecretManager::connect($projectId, $dotEnv);
 
         if ($connection->client) {
             // Add the secret version
