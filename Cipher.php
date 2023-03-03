@@ -30,14 +30,14 @@ class Cipher
         //do the encryption given text/string/number
         $output = openssl_encrypt($string, $options['encrypt_method'], $options['key'], 0, $options['iv']);
         $output = base64_encode($output);
-       
+
         echo "criptografada: $output\n";
         return $output;
     }
 
     public static function decrypt($secretValue, $secretIv, $string)
     {
-        
+
         $output = false;
 
         $options = Cipher::options($secretValue, $secretIv);
@@ -46,8 +46,8 @@ class Cipher
         $output = openssl_decrypt(base64_decode($string), $options['encrypt_method'], $options['key'], 0, $options['iv']);
 
         echo "descriptografada: $output\n";
-       
+
         return $output;
     }
-    
+
 }

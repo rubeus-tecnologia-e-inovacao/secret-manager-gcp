@@ -37,9 +37,9 @@ Onde precisar utilizar, importe a dependência com:
 <br>
 
 Para proteger uma string
-    
+
     Cipher::encrypt(ENV(MASTER_SECRET_KEY), ENV(MASTER_SECRET_IV), "string_for_token_api_client");
-    
+
 `saída esperada:`
 
     string(60) "VExSWWVHTlBGOXpDbC90c2JNTVhEcEV5eXBBSDdrclRLMGFVWUtwY25Ncz0="
@@ -63,7 +63,7 @@ Para recuperar o valor original de uma string protegida
 ## 1º Passo
 
 <p>Apenas é necessário importar a classe onde for necessária sua utilização</p>
-    
+
     <?php
     use Rubeus\SecretManagerGcp\Hash;
 
@@ -113,7 +113,7 @@ Para tratar o resultado como um objeto, você pode usar a função <u>toObject()
     $secretAsObject = Hash::toObject('$argon2i$v=19$m=262144,t=4,p=2$RDkxWlNjMW1aa0FPQWg1bQ$rVZMukB5qPTo6JSxpnxp/Bd18sdG//1IEuGFktmRkrs');
 
 `saída esperada:`
-    
+
     object(stdClass)#1 (7) {
         ["algorithm"]=> string(7) "argon2i"
         ["version"]=> string(4) "v=19"
@@ -138,20 +138,20 @@ Para realizar o oposto e transformar o objeto do exemplo anterior novamente em s
 
 # Como configurar o Secret Manager
 
-## 1º Passo 
-Adicione a seguinte variavel ao seu ambiente (.env): 
-    
+## 1º Passo
+Adicione a seguinte variavel ao seu ambiente (.env):
+
     GOOGLE_APPLICATION_CREDENTIALS=/home/$USER/.service-accounts/secret-manager-account.json
 
 onde secret-manager-account.json é uma conta de serviço na GCP que deve possuir ao menos as seguintes permissões:
-    
+
 `secretmanager.secrets.create`<br>
 `secretmanager.secrets.get`<br>
 `secretmanager.versions.access`<br>
 `secretmanager.versions.add`<br>
 `secretmanager.versions.list`<br>
 
-sugerido utilizar o papel: 
+sugerido utilizar o papel:
 
 `Administrador do Gerenciador de secrets`
 

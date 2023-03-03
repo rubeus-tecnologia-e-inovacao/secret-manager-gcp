@@ -23,7 +23,7 @@ class Hash
     {
 
         $options = Hash::options($memoryCost, $timeCost, $threads);
-       
+
         $secretValue = password_hash($string, PASSWORD_ARGON2I, $options);
 
         return $secretValue;
@@ -32,14 +32,14 @@ class Hash
 
     public static function verify($string, $secretKey)
     {
-        
+
         $output = false;
 
         $output = password_verify($string, $secretKey) ? true : false;
-       
+
         return $output;
     }
-    
+
     public static function toString($secretObject)
     {
         $output = "$".$secretObject->algorithm;
