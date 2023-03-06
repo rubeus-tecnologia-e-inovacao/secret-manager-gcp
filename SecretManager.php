@@ -22,6 +22,11 @@ class SecretManager
     private static function connect($projectId, $dotEnv = "GOOGLE_APPLICATION_CREDENTIALS")
     {
         // Create the Secret Manager client.
+
+        if (is_null($dotEnv)){
+            $dotEnv = "GOOGLE_APPLICATION_CREDENTIALS";
+        }
+
         try {
             $connection = new stdClass;
             $credentials = env($dotEnv);
