@@ -27,6 +27,8 @@ class SecretManager
             $dotEnv = "GOOGLE_APPLICATION_CREDENTIALS";
         }
 
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . env($dotEnv));
+
         try {
             $connection = new stdClass;
             $credentials = env($dotEnv);
