@@ -122,10 +122,18 @@ class SecretManager
         if ($connection->client) {
             $formattedParent = $connection->client->secretName($projectId, $secretName);
 
-            $listVersions = $connection->client->listSecretVersions($formattedParent);
-            foreach ($listVersions->iterateAllElements() as $element) {
-                $response = $connection->client->accessSecretVersion($element->getName());
-                return $response->getPayload()->getData();
+            try {
+                $listVersions = $connection->client->listSecretVersions($formattedParent);
+                foreach ($listVersions->iterateAllElements() as $element) {
+                    $response = $connection->client->accessSecretVersion($element->getName());
+                    return $response->getPayload()->getData();
+                }
+            } catch (Exception $e) {
+                if (json_decode($e->getMessage())->status == "NOT_FOUND") {
+                    return "NOT_FOUND";
+                } else {
+                    return $e;
+                }
             }
         } else {
             return $connection->message;
